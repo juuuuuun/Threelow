@@ -8,31 +8,39 @@
 
 #import <Foundation/Foundation.h>
 #import "Dice.h"
-#import "DiceManager.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"⚀ ⚁ ⚂ ⚃ ⚄ ⚅");
+        NSLog(@"\nTHREELOW!\n\n\n");
         
         int numberOfDice = 5;
-        DiceManager* diceManager = [[DiceManager alloc] init];
-        for(int i = 0; i < numberOfDice; i++) {
-            [diceManager addDice:[[Dice alloc] init]];
-        }
-        
-        NSLog(@"%@", [diceManager printValuesOfDice]);
+        GameController* gameController = [[GameController alloc] init];
+        [gameController addDice:numberOfDice];
         
         while (YES) {
+            NSLog(@"%@", [gameController printValuesOfDice]);
+            
             char userInput[255];
             fgets(userInput, 255, stdin);
             NSString* inputString = [[NSString stringWithUTF8String:userInput] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             
             if([inputString isEqualToString:@"roll"]) {
-                for(Dice* dice in diceManager.allDice) {
-                    [dice roll];
+                [gameController rollDice];
+            }
+            
+            if([inputString hasPrefix:@"hold"]) {
+                NSArray* inputArguments = [inputString componentsSeparatedByString:@" "];
+                if(inputArguments.count < 2) {
+                    NSLog(@"Hold needs 2 argument (e.g. hold 3)");
+                    continue;
+                } else {
+                    [gameController holdDie:[inputArguments[1] integerValue]];
                 }
-                NSLog(@"%@", [diceManager printValuesOfDice]);
+            }
+            
+            if([inputString isEqualToString:@"reset"]) {
+                [gameController resetDice];
             }
         }
         

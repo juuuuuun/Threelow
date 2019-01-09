@@ -1,5 +1,5 @@
 //
-//  DiceManager.h
+//  GameController.h
 //  Threelow
 //
 //  Created by Jun Oh on 2019-01-09.
@@ -11,11 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DiceManager : NSObject
+@interface GameController : NSObject
 
 @property (nonatomic, strong, readonly) NSArray<Dice *>* allDice;
+@property (nonatomic, strong) NSMutableSet<Dice *>* heldDice;
 
--(void) addDice:(Dice *)dice;
+-(void) addDice:(NSInteger)numberOfDice;
+
+-(void) holdDie:(NSInteger)dieNumber;
+
+-(void) rollDice;
+
+-(void) resetDice;
+
+-(NSInteger) currentScore;
 
 -(NSString *) printValuesOfDice;
 
