@@ -15,6 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) NSArray<Dice *>* allDice;
 
+-(void) addDice:(Dice *)dice;
+
+-(NSString *) printValuesOfDice;
+
 @end
 
 NS_ASSUME_NONNULL_END

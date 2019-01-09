@@ -20,6 +20,7 @@
 }
 
 - (void)roll {
+    // arc4random_unifrom(value) will return a random number between 0 - (value-1)
     self.rollValue = arc4random_uniform(6) + 1;
 }
 
