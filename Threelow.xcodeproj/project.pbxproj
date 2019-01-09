@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C815DFB821E6920F007AF507 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C815DFB721E6920F007AF507 /* main.m */; };
+		C815DFC021E692AC007AF507 /* Dice.m in Sources */ = {isa = PBXBuildFile; fileRef = C815DFBF21E692AC007AF507 /* Dice.m */; };
+		C815DFC321E69675007AF507 /* DiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C815DFC221E69675007AF507 /* DiceManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		C815DFB421E6920F007AF507 /* Threelow */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Threelow; sourceTree = BUILT_PRODUCTS_DIR; };
 		C815DFB721E6920F007AF507 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C815DFBE21E692AC007AF507 /* Dice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Dice.h; sourceTree = "<group>"; };
+		C815DFBF21E692AC007AF507 /* Dice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Dice.m; sourceTree = "<group>"; };
+		C815DFC121E69675007AF507 /* DiceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiceManager.h; sourceTree = "<group>"; };
+		C815DFC221E69675007AF507 /* DiceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiceManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				C815DFB721E6920F007AF507 /* main.m */,
+				C815DFC121E69675007AF507 /* DiceManager.h */,
+				C815DFC221E69675007AF507 /* DiceManager.m */,
+				C815DFBE21E692AC007AF507 /* Dice.h */,
+				C815DFBF21E692AC007AF507 /* Dice.m */,
 			);
 			path = Threelow;
 			sourceTree = "<group>";
@@ -118,7 +128,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C815DFC021E692AC007AF507 /* Dice.m in Sources */,
 				C815DFB821E6920F007AF507 /* main.m in Sources */,
+				C815DFC321E69675007AF507 /* DiceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
