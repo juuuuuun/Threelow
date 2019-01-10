@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, readonly) NSArray<Dice *>* allDice;
 @property (nonatomic, strong) NSMutableSet<Dice *>* heldDice;
+@property (nonatomic, strong) NSMutableSet<Dice *>* keptDice;
+@property (nonatomic) NSInteger rollTaken;
 
 -(void) addDice:(NSInteger)numberOfDice;
 

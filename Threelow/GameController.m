@@ -21,6 +21,8 @@
     if (self) {
         _allDice = [[NSMutableArray alloc] init];
         _heldDice = [[NSMutableSet alloc] init];
+        _keptDice = [[NSMutableSet alloc] init];
+        _rollTaken = 0;
     }
     return self;
 }
@@ -29,6 +31,7 @@
     for(int i = 0; i < numberOfDice; i++) {
         [_allDice addObject:[[Dice alloc] init]];
     }
+    [self rollDice];
 }
 
 - (void)holdDie:(NSInteger)dieNumber {
@@ -41,7 +44,11 @@
     // dieNumber will be 1 greater than die subscript required to add/remove since array is 0-based
     Dice* diceToAdd = [self.allDice objectAtIndex:dieNumber-1];
     if( [self.heldDice containsObject:diceToAdd]) {
-        [self.heldDice removeObject:diceToAdd];
+        if( [self.keptDice containsObject:diceToAdd]) {
+            NSLog(@"Cannot unhold die held from last turn");
+        } else {
+            [self.heldDice removeObject:diceToAdd];
+        }
     } else {
         [self.heldDice addObject:diceToAdd];
     }
@@ -51,12 +58,20 @@
     for(Dice* dice in self.allDice) {
         if(![self.heldDice containsObject:dice]) {
             [dice roll];
+        } else {
+            [self.keptDice addObject:dice];
         }
+    }
+    if(!(self.keptDice.count == self.allDice.count)) {
+        self.rollTaken++;
     }
 }
 
 - (void)resetDice {
+    [self.keptDice removeAllObjects];
     [self.heldDice removeAllObjects];
+    self.rollTaken = 0;
+    [self rollDice];
 }
 
 - (NSInteger)currentScore {
@@ -94,7 +109,14 @@
         
         totalValues = [totalValues stringByAppendingString:valueOfDice];
     }
-    totalValues = [totalValues stringByAppendingFormat:@"\nYour total score is: %li", [self currentScore]];
+    
+    totalValues = [totalValues stringByAppendingFormat:@"\nNumber of rolls so far: %li", self.rollTaken];
+    
+    if((self.keptDice.count == self.allDice.count)) {
+        totalValues = [totalValues stringByAppendingFormat:@"\nYour final score is: %li", [self currentScore]];
+    } else {
+        totalValues = [totalValues stringByAppendingFormat:@"\nYour current score is: %li", [self currentScore]];
+    }
     
     return totalValues;
 }
